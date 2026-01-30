@@ -1,22 +1,25 @@
-# Hey, I'm Mike
+# Hi there, I'm Mike Frethy 👋
 
-Full-stack developer by trade, home automation tinkerer by obsession. I like building things that make everyday life a little smoother — whether that's a web app or a house that knows when to turn the lights down.
+🚀 **High-Velocity Systems Engineering**
 
-## What I'm Working On
+I am a Full-stack Integrator and IT Admin at ONE&ALL Church, dedicated to bridging the gap between complex ministry needs and production-grade infrastructure.
 
-- **[ha-config-public](https://github.com/mfrethy-oneandall/ha-config-public)** — My Home Assistant setup, managed as code. Modular YAML packages, multi-mode lighting standards, motion-aware rooms, presence detection, and a Claude-powered MCP agent. It's a real daily-driver config, sanitized for sharing.
+My approach balances traditional systems administration with modern, AI-assisted engineering. I leverage multi-agent workflows to architect, build, and deploy stable integrations that solve real-world operational bottlenecks.
 
-## Interests
+### 🛠 The "Balanced Builder" Stack
+- **Ministry Ops**: Rock RMS, custom API integrations, automation.
+- **Infrastructure**: MDM (NanoMDM/Apple), FortiGate, Network Automation.
+- **Smart Systems**: Home Assistant, IoT, custom hardware logic.
+- **Workflow**: AI-augmented development (LLM-driven boilerplate, human-driven architecture).
 
-- Home automation & smart home (Home Assistant, Zigbee, ESPHome)
-- Config-as-code — treating infrastructure and home automation like software projects
-- AI-assisted development — using Claude Code and MCP servers in real workflows
-- Building tools that solve actual problems, not hypothetical ones
+### 🤖 How I Build
+I believe the future of engineering is AI-augmented. My repositories reflect a "ship-first" mentality where AI agents handle the repetitive boilerplate, allowing me to focus on high-level system architecture, security, and real-world impact.
 
-## Let's Connect
+**The Result**: High-quality codebases with documented intent, shipped at a pace that matches the speed of the mission.
 
-I'm open to contributions, ideas, and conversations. If something in my HA config sparks an idea or you want to adapt it for your own setup, feel free to open an issue or PR.
+### 🎯 The Goal
+Practical, outcome-driven tech. I don't build for "vibes"—I build systems that ship fast, stay stable, and serve people.
 
----
-
-*Built with caffeine, YAML, and an unreasonable number of Zigbee devices.*
+### 📬 Connect with me
+- **Role**: IT Admin @ ONE&ALL Church
+- **Focus**: Full-stack Automation & Systems Integration
