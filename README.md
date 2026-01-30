@@ -1,4 +1,4 @@
-# Hi there, I'm Mike Frethy 👋
+# Hi there, I'm Mike 👋
 
 🚀 **High-Velocity Systems Engineering**
 
