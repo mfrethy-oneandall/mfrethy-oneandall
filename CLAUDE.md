@@ -85,6 +85,14 @@ Email: mike.frethy@oneandall.church | ClickUp ID: 88227395
 | home-assistant | `100.99.5.79` | Working | HAOS bare metal, MCP `:8123` |
 → Full details: [memory/context/samuel-system.md](memory/context/samuel-system.md)
 
+## IT Tooling
+| Tool | Purpose | Notes |
+|------|---------|-------|
+| `gws` | Google Workspace CLI (replaces GAM) | npm `@googleworkspace/cli` v0.9.1 |
+| `gws-admin` | Admin Directory wrapper | `/usr/local/bin/gws-admin` — create/manage email accounts |
+| `gcloud` | GCP CLI — used for gws auth | ADC credentials at `~/.config/gcloud/application_default_credentials.json` |
+→ Full setup + commands: [memory/context/gws.md](memory/context/gws.md)
+
 ## Preferences
 - No Microsoft Office (Google Workspace only)
 - Project tracker: ClickUp (IT Team > IT Service Desk > IT Requests)
