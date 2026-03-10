@@ -70,21 +70,30 @@ See: [memory/context/sanctuary-rebuild.md](memory/context/sanctuary-rebuild.md)
 
 ---
 
-## Cross-Repo Awareness Rule
+## @Import Architecture (2026-03-09)
 
-Every repo's `CLAUDE.md` should include the pointer:
-```
-→ Cross-repo map: mfrethy-oneandall/memory/repos.md
-   (github.com/mfrethy-oneandall/mfrethy-oneandall)
-```
-This ensures any agent attached to any single repo can navigate to the full picture.
+Every repo's `CLAUDE.md` uses `@import` to pull canonical context from this repo — no more duplicate topology docs.
+
+| Repo | CLAUDE.md imports |
+|------|-------------------|
+| `~/Documents/GitHub/CLAUDE.md` | `@mfrethy-oneandall/CLAUDE.md` — loaded for ALL repos in workspace |
+| `samuel-system/CLAUDE.md` | `@mfrethy-oneandall/memory/context/samuel-system.md` |
+| `ha-config/CLAUDE.md` | `@mfrethy-oneandall/memory/context/ha-config.md` |
+| `RockProduction/CLAUDE.md` | `@mfrethy-oneandall/CLAUDE.md` (local, gitignored) |
+
+**Archived from satellite repos** (content now in canonical):
+- `samuel-system/specs/HIVE_CHEATSHEET.md` → `_archive/specs-archive/`
+- `samuel-system/specs/hive_nodes.md` → `_archive/specs-archive/`
+- `samuel-system/specs/AGENTSTARTERPROMPT.md` → `mfrethy-oneandall/specs/agent-starter-prompt.md`
+- `samuel-system/specs/HIVE_REPOS.md` → stub pointer
+- `ha-config/docs/HIVE_REPOS.md` → stub pointer
 
 ---
 
 ## Keeping This Current
 
 When the system changes (new node, retired service, new repo, role change):
-1. Update the relevant repo's own docs
-2. Update this file (`mfrethy-oneandall/memory/repos.md`) ← **canonical**
-3. Update `samuel-system/specs/HIVE_REPOS.md` ← mirrors this for Samuel context
-4. Commit each repo separately
+1. Update **`mfrethy-oneandall/memory/context/samuel-system.md`** ← primary edit target
+2. Update this file if repo structure changes
+3. Satellite HIVE_REPOS.md stubs need no update — they just point here
+4. Commit `mfrethy-oneandall` repo — all repos pick up changes via @import
