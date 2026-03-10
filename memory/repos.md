@@ -7,7 +7,7 @@ _Cross-repo reference for all agents. Updated: 2026-03-09._
 
 ---
 
-## The 5 Repos
+## The 6 Repos
 
 ### 1. `mfrethy-oneandall` — Personal Operator Hub
 **GitHub:** `mfrethy-oneandall/mfrethy-oneandall`
@@ -56,6 +56,17 @@ _Cross-repo reference for all agents. Updated: 2026-03-09._
 **IMPORTANT:** Personal agent files (CLAUDE.md, TASKS.md, memory/, productivity.plugin) are gitignored — kept locally only.
 **Church context:** Agent memory files exist locally (untracked) for church IT context. See `.mcp.json` for RockRMS MCP connector.
 **Agent entry point:** `CLAUDE.md` → `docs/agents/start-here.md` for Rock context.
+
+---
+
+### 6. `oneandall-it-plugins` — ONE&ALL IT Cowork Plugin
+**GitHub:** `mfrethy-oneandall/oneandall-it-plugins`
+**Local (Forge):** `/Users/mikefrethy/Documents/GitHub/oneandall-it-plugins`
+**Purpose:** Cowork plugin (skills + gws-mcp server) for ONE&ALL IT workflows. Stable source of truth for the oneandall-it Cowork plugin.
+**Owns:** `gws-mcp/` Python MCP server (wraps gws + gws-admin CLIs), skills for CP&A provisioning, GWS provisioning, inbox context enrichment, IT intake processing.
+**Deploy model:** Plugin uploaded to Claude Desktop via Cowork local plugin upload. gws-mcp also deployed as always-on MCP in `claude_desktop_config.json`.
+**Note:** ClickUp + Gmail tools come from Anthropic productivity plugin OAuth connectors (Cowork-only). Not independently configurable without tokens.
+**Agent entry point:** `3.1.0/.claude-plugin/plugin.json` → skill SKILL.md files.
 
 ---
 

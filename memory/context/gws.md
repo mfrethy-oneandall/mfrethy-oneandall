@@ -80,3 +80,49 @@ gws-admin users delete user@oneandall.church
 - **Admin Directory escape hatch broken**: `gws admin:directory_v1` parser bug in 0.9.1 — use `gws-admin` instead
 - **No domain-wide delegation**: gws has no DWD support; not needed for current use case
 - **HTML email / CC/BCC**: `gws gmail +send` is plain text only; use raw API for HTML (`gws gmail users messages send --json '...'`)
+
+---
+
+## gws-mcp — MCP Server (Always-On in Claude Desktop)
+
+A FastMCP Python server wrapping `gws` and `gws-admin` for use in Claude Desktop and Cowork sessions.
+
+**Source:** `~/Library/Application Support/Claude/gws-mcp/`
+**Venv:** `~/Library/Application Support/Claude/gws-mcp/.venv/` (Python 3.13, built via `uv sync`)
+**Stable plugin source:** `~/Documents/GitHub/oneandall-it-plugins/3.1.0/mcp-servers/gws-mcp/`
+
+### claude_desktop_config.json entry
+```json
+"gws": {
+  "command": "/opt/homebrew/bin/uv",
+  "args": ["run", "--directory",
+    "/Users/mikefrethy/Library/Application Support/Claude/gws-mcp",
+    "python", "-m", "gws_mcp"],
+  "env": {
+    "GWS_DOMAIN": "oneandall.church",
+    "GWS_SENDER": "mike.frethy@oneandall.church",
+    "GWS_GMAIL_BIN": "/Users/mikefrethy/.nvm/versions/node/v24.14.0/bin/gws",
+    "GWS_ADMIN_BIN": "gws-admin",
+    "GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE": "/Users/mikefrethy/.config/gcloud/application_default_credentials.json"
+  }
+}
+```
+
+**IMPORTANT: GWS_GMAIL_BIN must be the full nvm path** — Claude Desktop spawns with minimal PATH that doesn't include nvm.
+
+### Tools exposed
+| Tool | Description |
+|------|-------------|
+| `gws_user_get` | Look up a GWS user by email |
+| `gws_user_list` | List all users in domain |
+| `gws_user_create` | Create new GWS account (first, last, email, password, change_password_on_login) |
+| `gws_user_suspend` | Suspend a user account |
+| `gws_user_restore` | Restore a suspended account |
+| `gws_gmail_send` | Send email with full CC/BCC via RFC 2822 (to, subject, body, cc?, bcc?) |
+| `gws_gmail_triage` | Show unread inbox summary |
+
+### Rebuild venv (if needed)
+```bash
+cd ~/Library/Application\ Support/Claude/gws-mcp
+/opt/homebrew/bin/uv sync
+```

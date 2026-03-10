@@ -17,6 +17,7 @@ Email: mike.frethy@oneandall.church | ClickUp ID: 88227395
 | `ha-config` | mfrethy-oneandall | Home Assistant YAML config (deployed via rsync from Forge) |
 | `Obsidian` | mfrethy-oneandall | Samuel's consciousness layer — OpenClaw workspace |
 | `RockProduction` | ONE-ALL-Church | ONE&ALL Rock RMS production web app + church context |
+| `oneandall-it-plugins` | mfrethy-oneandall | Cowork plugin: IT skills (CP&A, GWS, intake) + gws-mcp server |
 → Full details: [memory/repos.md](memory/repos.md)
 
 ## Organization
