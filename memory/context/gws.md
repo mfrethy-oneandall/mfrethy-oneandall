@@ -14,15 +14,17 @@ npm install -g @googleworkspace/cli   # installs as 'gws'
 ```
 
 ## Auth Setup (ADC file — keychain workaround)
-gws 0.9.1 has a macOS keychain bug — it writes `credentials.enc` but never stores the decryption key in the keychain, making credentials unreadable. Workaround: use gcloud ADC as the credential source.
+gws 0.9.1 has a macOS keychain bug — it writes `credentials.enc` but never stores the decryption key in the keychain, making credentials unreadable. Workaround: authenticate via a Python OAuth flow that writes directly to the ADC file path.
 
-**To re-authenticate (e.g. after token expiry):**
+**NEVER run `gws auth logout`** — it deletes `application_default_credentials.json` (the shared ADC file), breaking gws-admin and gws-mcp. If accidentally run, follow the re-auth steps below.
+
+**DO NOT use `gcloud auth application-default login` for re-auth** — gcloud only grants GCP scopes (cloud-platform, sqlservice.login) and ignores Workspace API scopes even when you specify them via `--scopes`.
+
+**To re-authenticate (token expiry or accidental logout):**
 ```bash
-gcloud auth application-default login \
-  --client-id-file=/Users/mikefrethy/.config/gws/client_secret.json \
-  --scopes=https://www.googleapis.com/auth/admin.directory.user,https://www.googleapis.com/auth/admin.directory.user.readonly,https://www.googleapis.com/auth/calendar,https://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/documents,https://www.googleapis.com/auth/drive,https://www.googleapis.com/auth/gmail.modify,https://www.googleapis.com/auth/presentations,https://www.googleapis.com/auth/spreadsheets,https://www.googleapis.com/auth/tasks,https://www.googleapis.com/auth/userinfo.email,openid
+/usr/bin/python3 ~/Documents/GitHub/oneandall-it-plugins/gws_reauth.py
 ```
-Credentials saved to: `~/.config/gcloud/application_default_credentials.json`
+Opens a browser → sign in as mike.frethy@oneandall.church → approve ALL permissions. Saves token to `~/.config/gcloud/application_default_credentials.json` with all required scopes.
 
 **Permanent env var in `~/.zshrc`:**
 ```bash
@@ -31,6 +33,8 @@ export GOOGLE_WORKSPACE_CLI_CREDENTIALS_FILE=/Users/mikefrethy/.config/gcloud/ap
 
 **GCP project:** `gam-project-hcgi6` (OAuth client ID `979496069444-...`)
 **Client secret:** `~/.config/gws/client_secret.json`
+
+**Known warning (non-fatal):** `gws gmail` prints "failed to decrypt token_cache.json" on every call — gws creates its own encrypted token cache that it can't decrypt due to the keychain bug. This is cosmetic: gws falls back to the ADC file and returns exit 0. gws-mcp only surfaces stderr to Cowork on non-zero exit, so Cowork never sees it.
 
 ## Common gws Commands
 ```bash
