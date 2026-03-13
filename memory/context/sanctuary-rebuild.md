@@ -1,22 +1,26 @@
-# Sanctuary Rebuild Plan
+# Sanctuary — Current State & Church LAN Role
 
 ## Node
-MacBook Pro i9 | Tailscale: `100.100.202.16` | Always-on (church office, SD campus)
+MacBook Pro i9 32GB | Ubuntu 24.04 | Tailscale: `100.104.133.84` | Always-on (church office, SD campus)
+
+_Rebuild complete as of 2026-03-12. This doc describes current running state._
 
 ---
 
-## Current State (March 2026)
+## Active Services
 
-Running legacy Samuel stack:
-
-| Port | Service | Keep? |
+| Port | Service | Notes |
 |------|---------|-------|
-| 5120 | Dev Hive backup coordinator | ✅ Keep |
-| 5190 | Dev Hive Worker MCP | ✅ Keep |
-| 5130 | LiteLLM proxy (old routes, stale) | ⚠️ Reconfigure or remove |
-| 11434 | Ollama `qwen3:14b` | ✅ Keep |
-| 3000 | Unknown | 🔍 Investigate first |
-| 5122 | Unknown | 🔍 Investigate first |
+| 1234 | LM Studio | Same 4-model Qwen3 stack as Forge |
+| 5100 | Samuel MCP | Mirror of Forge |
+| 5101 | Samuel Bridge | Mirror of Forge |
+| 5130 | LiteLLM proxy | Same aliases as Forge |
+| 5122 | Open WebUI proxy | — |
+| 8080 | Open WebUI | — |
+
+**Runtime path**: `/home/mikefrethy/samuel-worker`
+
+**SSH to Forge**: `ssh forge` via `~/.ssh/id_ed25519_forge` (target: `mikefrethy@100.97.220.115`)
 
 ---
 
@@ -26,7 +30,9 @@ Sanctuary sits on the church office LAN at SD campus. This gives Samuel (and age
 
 ---
 
-## Planned Function Layers (Church LAN)
+## Planned Church LAN Function Layers
+
+These are not yet implemented but represent the intended future expansion:
 
 | Appliance | What | Notes |
 |-----------|------|-------|
@@ -38,40 +44,7 @@ Sanctuary sits on the church office LAN at SD campus. This gives Samuel (and age
 
 ---
 
-## Rebuild Steps
-
-1. **Investigate unknowns first:**
-   - What is running on port 3000? (`lsof -i :3000` on Sanctuary)
-   - What is running on port 5122? (`lsof -i :5122` on Sanctuary)
-
-2. **Strip old stack:**
-   - Disable/remove LiteLLM proxy service (old routing, Ollama-based, stale Forge routes)
-   - Leave Dev Hive `:5120` and Worker MCP `:5190` running
-
-3. **Keep core intact:**
-   - Ollama + `qwen3:14b` — Sanctuary's always-on inference layer
-   - Dev Hive backup coordinator — Forge's devhive is retired; Sanctuary owns this
-   - Dev Hive Worker MCP — worker execution endpoint
-
-4. **Add church LAN function layers:**
-   - Fortinet MCP or REST API wrapper (FortiGate API)
-   - UniFi MCP or API wrapper
-   - NanoMDM integration endpoint
-   - Printer management / status endpoint
-   - RockRMS local health monitor (ping + availability check)
-
-5. **Update routing on Forge:**
-   - Remove stale LiteLLM aliases: `forge-coder`, `forge-assistant`, `forge-deep` (Ollama uninstalled from Forge)
-   - Keep `sanctuary-assistant` → `qwen3:14b` `:11434`
-   - Update `samuel-system/specs/hive_nodes.md` with new Sanctuary role
-
-6. **SSH access:**
-   - `ssh sanctuary` or `ssh 100.100.202.16`
-   - Repo: `/home/mikefrethy/samuel-system`
-
----
-
-## Operating Model After Rebuild
+## Operating Model (Future Church LAN Queries)
 
 ```
 Samuel (Forge) → Sanctuary via Tailscale

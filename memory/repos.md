@@ -23,8 +23,8 @@ _Cross-repo reference for all agents. Updated: 2026-03-09._
 **Local (Forge):** `/Users/mikefrethy/Documents/GitHub/samuel-system`
 **Local (Sanctuary):** `/home/mikefrethy/samuel-system`
 **Purpose:** Samuel's hive coordination — MCP server, bridge, LiteLLM, worker engine, governance.
-**Key services:** MCP `:5100`, Bridge `:5101`, LiteLLM `:5130` (Forge). Dev Hive `:5120` (Sanctuary only).
-**Note:** Dev Hive is RETIRED on Forge (`com.samuel.local.devhive` disabled). Sanctuary runs it.
+**Key services:** MCP `:5100`, Bridge `:5101`, LiteLLM `:5130` (Forge and Sanctuary).
+**Note:** Dev Hive is RETIRED on all nodes. Do not reference.
 **Agent entry point:** `CLAUDE.md` → `specs/HIVE_CHEATSHEET.md`. For current state: `memory/context/samuel-system.md` here.
 
 ---
@@ -70,13 +70,13 @@ _Cross-repo reference for all agents. Updated: 2026-03-09._
 
 ---
 
-## Sanctuary — Planned Rebuild Role
+## Sanctuary — Active Backup Role
 
-Sanctuary (MBP i9, `100.100.202.16`) is the always-on church-network node.
+Sanctuary (MBP i9 32GB, Ubuntu 24.04, `100.104.133.84`) is the always-on church-network backup node.
 See: [memory/context/sanctuary-rebuild.md](memory/context/sanctuary-rebuild.md)
 
-**Current:** Runs Dev Hive backup `:5120`, Ollama `qwen3:14b` `:11434`, Worker MCP `:5190`.
-**Planned:** Strip old LiteLLM stack. Add church LAN function layers: Fortinet (all locations), UniFi/Ruckus, NanoMDM, O&A printers, RockRMS local health monitor.
+**Current:** Full mirror of Forge — LM Studio `:1234` (same 4-model Qwen3 stack), Samuel MCP `:5100`, Bridge `:5101`, LiteLLM `:5130`, Open WebUI `:5122`/`:8080`. No Ollama. No Dev Hive.
+**Planned next:** Add church LAN function layers: Fortinet (all locations), UniFi/Ruckus, NanoMDM, O&A printers, RockRMS local health monitor.
 **Physical advantage:** Sits on church office LAN → direct access to church appliances without Tailscale hop.
 
 ---
