@@ -8,8 +8,8 @@ _Machine-readable ground truth. No historical content. Updated: 2026-03-12._
 | Node | Machine | Tailscale IP | Status | Role |
 |------|---------|-------------|--------|------|
 | **forge** | MacBook M4 Pro Max 64GB, macOS | `100.97.220.115` | **PRIMARY** | All Samuel ops, LM Studio, OpenClaw |
-| **sanctuary** | MBP i9 32GB, Ubuntu 24.04 | `100.104.133.84` | **BACKUP** | Full mirror of Forge services |
-| **capital** | Mac mini 8GB, Ubuntu | `100.112.13.70` | **OFFLINE** | Hardware failure — rebuild pending |
+| **sanctuary** | MBP i9 32GB, Ubuntu 24.04 | `100.100.202.16` | **BACKUP** | Full mirror of Forge services |
+| **capital** | MacBook Pro i9 64GB, Ubuntu | `100.112.13.70` | **OFFLINE** | Hardware failure — rebuild pending |
 | **home-assistant** | Mac mini bare metal, HAOS | `100.99.5.79` | Working | HAOS 2026.3.1, MCP `:8123` |
 
 ---
@@ -27,14 +27,17 @@ _Machine-readable ground truth. No historical content. Updated: 2026-03-12._
 
 ---
 
-## 3. LM Studio Model Stack (Forge + Sanctuary — identical)
+## 3. LM Studio Model Stack (Forge)
 
 | Model ID | Format | Context | Role | Load Policy |
 |----------|--------|---------|------|-------------|
-| `qwen3-1.7b-mlx` | MLX 4bit | 4096 | Reflex/dispatcher, `/no_think`, no tool calls | Always pinned |
-| `qwen/qwen3-vl-4b` | MLX | 8192 | Tool calls, HA commands, vision, agentic loops | Always pinned |
-| `qwen/qwen3.5-35b-a3b` | GGUF MoE | 64k | Deep reasoning, codegen, novel proposals | JIT (~15min evict) |
-| `text-embedding-mxbai-embed-large-v1` | GGUF | — | 1024d embeddings (OpenClaw sqlite-vec) | Resident |
+| `qwen/qwen3-vl-4b` | MLX | 32768 | VL + tool calls, fast baseline | Always resident |
+| `qwen/qwen3-vl-7b` | MLX | 32768 | Higher-tier VL quality | JIT (TTL 900s) |
+| `qwen/qwen3-8b` | GGUF | 32768 | Committee review, mid-tier dev | Resident |
+| `qwen/qwen3.5-35b-a3b` | GGUF MoE | 65536 | Deep reasoning, codegen, novel proposals | JIT (TTL 600s) |
+| `nomic-embed-text-v1.5` | GGUF | 2048 | 768d embeddings (RAG + OpenClaw sqlite-vec) | Resident |
+
+Sanctuary runs reduced set: qwen3-8b (fast), qwen3-14b (JIT), nomic-embed-text-v1.5
 
 ---
 
@@ -42,9 +45,13 @@ _Machine-readable ground truth. No historical content. Updated: 2026-03-12._
 
 | Alias | Routes To | Model |
 |-------|-----------|-------|
-| `samuel-fast` | Forge LM Studio | `qwen3-1.7b-mlx` |
+| `samuel-fast` | Forge LM Studio | `qwen/qwen3-vl-4b` |
 | `samuel-assistant` | Forge LM Studio | `qwen/qwen3-vl-4b` |
-| `samuel-deep` / `samuel-coder` | Forge LM Studio | `qwen/qwen3.5-35b-a3b` |
+| `samuel-vision` | Forge LM Studio | `qwen/qwen3-vl-7b` |
+| `samuel-dev` | Forge LM Studio | `qwen/qwen3-8b` |
+| `samuel-deep` | Forge LM Studio | `qwen/qwen3.5-35b-a3b` |
+| `samuel-coder` | Forge LM Studio | `qwen/qwen3.5-35b-a3b` |
+| `samuel-embed` | Forge LM Studio | `nomic-embed-text-v1.5` |
 
 ---
 
@@ -56,17 +63,17 @@ _Machine-readable ground truth. No historical content. Updated: 2026-03-12._
 | Binary | `/opt/homebrew/bin/openclaw` |
 | Gateway | `ws://127.0.0.1:18789` |
 | Dashboard | `http://127.0.0.1:18789/` |
-| Memory backend | sqlite-vec at `~/.openclaw/memory/main.sqlite` — 1024d mxbai embeddings |
+| Memory backend | sqlite-vec at `~/.openclaw/memory/main.sqlite` — 768d nomic embeddings (via sqlite-vec) |
 | Workspace | `/Users/mikefrethy/Documents/GitHub/Obsidian` |
 | Node | Forge only |
 
 ---
 
-## 6. Sanctuary Services (BACKUP — 100.104.133.84)
+## 6. Sanctuary Services (BACKUP — 100.100.202.16)
 
 | Port | Service | Notes |
 |------|---------|-------|
-| `:1234` | LM Studio | Same 4-model Qwen3 stack as Forge |
+| `:1234` | LM Studio | Reduced Qwen3 stack: qwen3-8b, qwen3-14b, nomic-embed-text-v1.5 |
 | `:5100` | Samuel MCP | Mirror of Forge |
 | `:5101` | Samuel Bridge | Mirror of Forge |
 | `:5130` | LiteLLM proxy | Mirror of Forge |
@@ -111,7 +118,8 @@ Samuel connects to Home Assistant via **real-time WebSocket subscriber** (`samue
 | Worker MCP `:5190` | RETIRED — do not reference. No longer running anywhere. |
 | Robot City `:5110` | RETIRED — do not reference. Visualizer deprecated. |
 | `devstral-small-2-2512` | RETIRED — do not reference. Removed from LM Studio. |
-| `nomic-embed-text-v1.5` | RETIRED — do not reference. Replaced by mxbai-embed-large-v1. |
+| `qwen3-1.7b-mlx` | RETIRED — do not reference. Replaced by qwen3-vl-4b as fast baseline. |
+| `mxbai-embed-large-v1` (1024d) | RETIRED — do not reference. Replaced by nomic-embed-text-v1.5 (768d). |
 | Shadow polling (HA) | RETIRED — do not reference. Replaced by WebSocket subscriber. |
 | `watch_vault.py` | RETIRED — do not reference. Killed/inactive. |
 | `index_vault.py` | RETIRED — do not reference. Killed/inactive. |
