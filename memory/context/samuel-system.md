@@ -1,5 +1,5 @@
 # Samuel System — Runtime Reference
-_Machine-readable ground truth. No historical content. Updated: 2026-03-12._
+_Machine-readable ground truth. No historical content. Updated: 2026-03-17._
 
 ---
 
@@ -31,9 +31,8 @@ _Machine-readable ground truth. No historical content. Updated: 2026-03-12._
 
 | Model ID | Format | Context | Role | Load Policy |
 |----------|--------|---------|------|-------------|
-| `qwen/qwen3-vl-4b` | MLX | 32768 | VL + tool calls, fast baseline | Always resident |
-| `qwen/qwen3-vl-7b` | MLX | 32768 | Higher-tier VL quality | JIT (TTL 900s) |
-| `qwen/qwen3-8b` | GGUF | 32768 | Committee review, mid-tier dev | Resident |
+| `qwen3.5-4b-mlx` | MLX 4-bit | 32768 | Fast baseline, agentic loops | Always resident |
+| `qwen3.5-9b-mlx` | MLX 4-bit | 32768 | Mid-tier dev, committee | Resident |
 | `qwen/qwen3.5-35b-a3b` | GGUF MoE | 65536 | Deep reasoning, codegen, novel proposals | JIT (TTL 600s) |
 | `nomic-embed-text-v1.5` | GGUF | 2048 | 768d embeddings (RAG + OpenClaw sqlite-vec) | Resident |
 
@@ -45,13 +44,14 @@ Sanctuary runs reduced set: qwen3-8b (fast), qwen3-14b (JIT), nomic-embed-text-v
 
 | Alias | Routes To | Model |
 |-------|-----------|-------|
-| `samuel-fast` | Forge LM Studio | `qwen/qwen3-vl-4b` |
-| `samuel-assistant` | Forge LM Studio | `qwen/qwen3-vl-4b` |
-| `samuel-vision` | Forge LM Studio | `qwen/qwen3-vl-7b` |
-| `samuel-dev` | Forge LM Studio | `qwen/qwen3-8b` |
-| `samuel-deep` | Forge LM Studio | `qwen/qwen3.5-35b-a3b` |
-| `samuel-coder` | Forge LM Studio | `qwen/qwen3.5-35b-a3b` |
-| `samuel-embed` | Forge LM Studio | `nomic-embed-text-v1.5` |
+| `samuel-fast` | Forge LM Studio → sanctuary-fast fallback | `qwen3.5-4b-mlx` |
+| `samuel-assistant` | Forge LM Studio → sanctuary-fast fallback | `qwen3.5-4b-mlx` |
+| `samuel-dev` | Forge LM Studio → sanctuary-fast fallback | `qwen3.5-9b-mlx` |
+| `samuel-deep` | Forge LM Studio → forge-mid → sanctuary-fast | `qwen/qwen3.5-35b-a3b` |
+| `samuel-coder` | Forge LM Studio → forge-mid → sanctuary-fast | `qwen/qwen3.5-35b-a3b` |
+| `samuel-embed` | Forge LM Studio → sanctuary-embed fallback | `nomic-embed-text-v1.5` |
+
+Note: `samuel-vision` is REMOVED — no VL models in the current stack.
 
 ---
 
@@ -118,8 +118,12 @@ Samuel connects to Home Assistant via **real-time WebSocket subscriber** (`samue
 | Worker MCP `:5190` | RETIRED — do not reference. No longer running anywhere. |
 | Robot City `:5110` | RETIRED — do not reference. Visualizer deprecated. |
 | `devstral-small-2-2512` | RETIRED — do not reference. Removed from LM Studio. |
-| `qwen3-1.7b-mlx` | RETIRED — do not reference. Replaced by qwen3-vl-4b as fast baseline. |
-| `mxbai-embed-large-v1` (1024d) | RETIRED — do not reference. Replaced by nomic-embed-text-v1.5 (768d). |
+| `qwen3-1.7b-mlx` | RETIRED — do not reference. Replaced by qwen3.5-4b-mlx. |
+| `qwen/qwen3-vl-4b` | RETIRED — do not reference. Replaced by qwen3.5-4b-mlx. |
+| `qwen/qwen3-vl-7b` | RETIRED — do not reference. Replaced by qwen3.5-9b-mlx. |
+| `google/gemma-3-12b` | RETIRED — do not reference. Removed from LM Studio. |
+| `text-embedding-mxbai-embed-large-v1` / `mxbai-embed-large-v1` (1024d) | RETIRED — do not reference. Replaced by nomic-embed-text-v1.5 (768d). |
+| `samuel-vision` alias | RETIRED — do not reference. REMOVED — no VL models in stack. |
 | Shadow polling (HA) | RETIRED — do not reference. Replaced by WebSocket subscriber. |
 | `watch_vault.py` | RETIRED — do not reference. Killed/inactive. |
 | `index_vault.py` | RETIRED — do not reference. Killed/inactive. |
