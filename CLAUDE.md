@@ -53,7 +53,7 @@ Email: mike.frethy@oneandall.church | ClickUp ID: 88227395
 | **Samuel** | Mike's AI hive — the *world*, not one machine. Each computer is a city-node. |
 | **forge** | MacBook M4 Pro Max — PRIMARY Samuel node (`100.97.220.115`) |
 | **sanctuary** | MBP i9 — always-on backup, church LAN (`100.100.202.16`) |
-| **capital** | Mac mini Ubuntu — OFFLINE, rebuild pending (`100.112.13.70`) |
+| **capital** | MBP i9 64GB, Ubuntu 24.04 — ONLINE, rebuilt (`100.127.78.110`) |
 | **OpenClaw** | Samuel's agent runtime on Forge (`ws://127.0.0.1:18789`) |
 | **Dev Hive** | RETIRED — disabled on all nodes. Not running anywhere. |
 | **Next Gen (org)** | Central ONE&ALL staff not tied to campus budget; Mike is Next Gen |
@@ -65,7 +65,7 @@ Email: mike.frethy@oneandall.church | ClickUp ID: 88227395
 | Next Gen Check-in Rollout (Youth + Kids) | 🟡 In Progress | Rolling out new check-in system at both campuses |
 | Joshua Adams – Rancho Chapel Wi-Fi upgrade | 🔵 In Progress | Wi-Fi upgrade at Rancho Chapel |
 | CP&A Queue — daily Claude sync | 🔵 In Progress | Auto-synced via Cowork 10am task |
-| Capital rebuild | ⚠️ Pending | Hardware failure — rebuild pending |
+| Capital rebuild | 🟡 In Progress | Online at 100.127.78.110 — services up, models TBD |
 | Sanctuary rebuild | 🟡 Planned | Strip old stack, wire church LAN function layers |
 
 ## Recurring Meetings
@@ -82,7 +82,7 @@ Email: mike.frethy@oneandall.church | ClickUp ID: 88227395
 |------|----|--------|--------------|
 | forge | `100.97.220.115` | **PRIMARY** | MCP `:5100`, LM Studio `:1234`, OpenClaw `:18789`, LiteLLM `:5130`, Open WebUI `:8080` |
 | sanctuary | `100.100.202.16` | Online — full backup | LM Studio `:1234`, MCP `:5100`, Bridge `:5101`, LiteLLM `:5130`, Open WebUI `:5122`/`:8080` |
-| capital | `100.112.13.70` | **OFFLINE — rebuild pending** | — |
+| capital | `100.127.78.110` | **ONLINE — no models yet** | LM Studio `:1234`, MCP `:5100`, Bridge `:5101`, LiteLLM `:5130` |
 | home-assistant | `100.99.5.79` | Working | HAOS bare metal, MCP `:8123` |
 → Full details: [memory/context/samuel-system.md](memory/context/samuel-system.md)
 

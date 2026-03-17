@@ -9,7 +9,7 @@ _Machine-readable ground truth. No historical content. Updated: 2026-03-17._
 |------|---------|-------------|--------|------|
 | **forge** | MacBook M4 Pro Max 64GB, macOS | `100.97.220.115` | **PRIMARY** | All Samuel ops, LM Studio, OpenClaw |
 | **sanctuary** | MBP i9 32GB, Ubuntu 24.04 | `100.100.202.16` | **BACKUP** | Full mirror of Forge services |
-| **capital** | MacBook Pro i9 64GB, Ubuntu | `100.112.13.70` | **OFFLINE** | Hardware failure — rebuild pending |
+| **capital** | MacBook Pro i9 64GB, Ubuntu 24.04 | `100.127.78.110` | **ONLINE** | Rebuilt — LM Studio + Samuel services up; no models yet |
 | **home-assistant** | Mac mini bare metal, HAOS | `100.99.5.79` | Working | HAOS 2026.3.1, MCP `:8123` |
 
 ---
@@ -86,11 +86,23 @@ Note: `samuel-vision` is REMOVED — no VL models in the current stack.
 
 ---
 
-## 7. Capital (OFFLINE — 100.112.13.70)
+## 7. Capital (ONLINE — 100.127.78.110)
 
-Status: **OFFLINE** — hardware failure, rebuild pending.
+Status: **ONLINE** — rebuilt 2026-03-17. MBP i9 64GB, Ubuntu 24.04, LAN `10.20.99.107`, Tailscale `100.127.78.110` (hostname: `capital-host`).
 
-When rebuilt: same LM Studio + model stack baseline as Forge. No Ollama. No Dev Hive.
+**Note:** Old Tailscale device `capital` (`100.112.13.70`) is stale — remove from Tailscale admin panel.
+
+| Port | Service | Status | Notes |
+|------|---------|--------|-------|
+| `:1234` | LM Studio | Running | No models yet — install TBD |
+| `:5100` | Samuel MCP | Running | systemd user service |
+| `:5101` | Samuel Bridge | Running | systemd user service |
+| `:5130` | LiteLLM | Running | Proxies to Forge/Sanctuary until local models installed |
+
+**Runtime path**: `~/samuel-worker`
+**SSH**: `mikefrethy@10.20.99.107` (LAN) or `mikefrethy@100.127.78.110` (Tailscale)
+**No models yet** — GGUF (x86, not MLX). Mike will select models after lms is confirmed working.
+**RAG disabled** — no Obsidian vault on Capital.
 
 ---
 
