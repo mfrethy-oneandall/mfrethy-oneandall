@@ -1,7 +1,7 @@
 # Sanctuary — Current State & Church LAN Role
 
 ## Node
-MacBook Pro i9 32GB | Ubuntu 24.04 | Tailscale: `100.104.133.84` | Always-on (church office, SD campus)
+MacBook Pro i9 32GB | Ubuntu 24.04 | Tailscale: `100.100.202.16` | Always-on (church office, SD campus)
 
 _Rebuild complete as of 2026-03-12. This doc describes current running state._
 

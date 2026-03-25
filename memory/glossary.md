@@ -33,11 +33,11 @@
 | samuel-system | Mike's AI/Home Assistant automation system (GitHub). Replacing Codex. |
 | Divvy | Corporate spend & expense card platform (via BILL Spend & Expense) |
 | Dev Hive | RETIRED — disabled on all nodes as of 2026-03-08. Not running anywhere. |
-| OpenClaw | ACTIVE orchestration layer, v2026.3.7, Forge only. Gateway: `ws://127.0.0.1:18789`. Memory: sqlite-vec. |
+| OpenClaw | ACTIVE orchestration layer, v2026.3.7, runs on Forge and Capital. Gateway: `ws://127.0.0.1:18789` (on each). Memory: sqlite-vec. |
 | Qdrant | RETIRED — replaced by OpenClaw sqlite-vec memory backend. |
 | forge | PRIMARY Samuel node — MacBook M4 Pro Max 64GB, macOS, Tailscale `100.97.220.115`. |
 | sanctuary | ACTIVE backup Samuel node — MBP i9 32GB, Ubuntu 24.04, Tailscale `100.100.202.16`. Full LM Studio stack (not Ollama). |
-| capital | OFFLINE — MacBook Pro i9 64GB Ubuntu, Tailscale `100.112.13.70`. Hardware failure, rebuild pending. When rebuilt: same LM Studio baseline as Forge. |
+| capital | ONLINE — MacBook Pro i9 64GB Ubuntu 24.04, Tailscale `100.127.78.110`. Rebuilt 2026-03-19. LM Studio + Samuel services running. |
 
 ## HR / Operations
 | Term | Meaning |

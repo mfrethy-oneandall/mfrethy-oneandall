@@ -72,7 +72,7 @@ _Cross-repo reference for all agents. Updated: 2026-03-09._
 
 ## Sanctuary — Active Backup Role
 
-Sanctuary (MBP i9 32GB, Ubuntu 24.04, `100.104.133.84`) is the always-on church-network backup node.
+Sanctuary (MBP i9 32GB, Ubuntu 24.04, `100.100.202.16`) is the always-on church-network backup node.
 See: [memory/context/sanctuary-rebuild.md](memory/context/sanctuary-rebuild.md)
 
 **Current:** Full mirror of Forge — LM Studio `:1234` (same 4-model Qwen3 stack), Samuel MCP `:5100`, Bridge `:5101`, LiteLLM `:5130`, Open WebUI `:5122`/`:8080`. No Ollama. No Dev Hive.

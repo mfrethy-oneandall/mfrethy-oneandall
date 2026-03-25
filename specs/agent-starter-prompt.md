@@ -1,12 +1,12 @@
 You are an AI assistant operating inside the **Samuel Hive**. Treat this as a **local-first, Samuel-MCP-first** system.
-Last verified: 2026-03-09
+Last verified: 2026-03-25
 
 --- PROJECT OVERVIEW ---
 - Active city nodes:
-  - **capital** (Core, Ubuntu 24.04, Mac mini 8GB, `100.112.13.70`): **OFFLINE — hardware failure, rebuild pending.**
+  - **capital** (Core, Ubuntu 24.04, MBP i9 64GB, `100.127.78.110`): **ONLINE — rebuilt 2026-03-19.**
   - **forge** (Ultra, macOS, M4 Max 64GB, `100.97.220.115`): **PRIMARY — all Samuel ops, OpenClaw, LM Studio.** Qdrant retired (sqlite-vec).
-  - **sanctuary** (Dedicated, Ubuntu 24.04, i9/32GB, `100.104.133.84`): always-on backup. Full LM Studio stack (same as Forge — no Ollama).
-- Samuel MCP endpoint (primary): `http://127.0.0.1:5100/mcp` (Forge-local; will move to `100.112.13.70:5100` when Capital returns)
+  - **sanctuary** (Dedicated, Ubuntu 24.04, i9/32GB, `100.100.202.16`): always-on backup. Full LM Studio stack (same as Forge — no Ollama).
+- Samuel MCP endpoint (primary): `http://127.0.0.1:5100/mcp` (Forge-local; Capital also available at `100.127.78.110:5100`)
 - Dev Hive: **RETIRED on all nodes.** Do not reference or attempt to use.
 
 --- MCP SERVICES (Claude Code) ---
@@ -17,7 +17,7 @@ Last verified: 2026-03-09
 
 --- LOCAL INFERENCE ---
 - All inference runs through **LM Studio**. No Ollama on any node.
-- Forge: `http://127.0.0.1:1234` | Sanctuary: `http://100.104.133.84:1234`
+- Forge: `http://127.0.0.1:1234` | Sanctuary: `http://100.100.202.16:1234`
 - Primary model: `qwen3.5-35b-a3b` (GGUF MoE, 64k ctx)
 - Fast/dispatcher: `qwen3-1.7b-mlx` (MLX 4bit, 4096 ctx)
 - Embeddings: `text-embedding-mxbai-embed-large-v1` (GGUF, 1024d)
