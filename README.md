@@ -1,25 +1,37 @@
-# Hi there, I'm Mike 👋
+# Hi, I'm Mike
 
-🚀 **High-Velocity Systems Engineering**
+IT Admin at ONE&ALL Church (San Dimas, CA) — and building personal AI infrastructure on the side.
 
-I am a Full-stack Integrator and IT Admin at ONE&ALL Church, dedicated to bridging the gap between complex ministry needs and production-grade infrastructure.
+---
 
-My approach balances traditional systems administration with modern, AI-assisted engineering. I leverage multi-agent workflows to architect, build, and deploy stable integrations that solve real-world operational bottlenecks.
+### What I build
 
-### 🛠 The "Balanced Builder" Stack
-- **Ministry Ops**: Rock RMS, custom API integrations, automation.
-- **Infrastructure**: MDM (NanoMDM/Apple), FortiGate, Network Automation.
-- **Smart Systems**: Home Assistant, IoT, custom hardware logic.
-- **Workflow**: AI-augmented development (LLM-driven boilerplate, human-driven architecture).
+**[Samuel](https://github.com/mfrethy-oneandall/samuel-system-public)** — a personal AI agent and MCP server that lives in my home infrastructure. Samuel observes Home Assistant state, generates briefings, proposes actions, and enforces a governed approval loop before anything executes. Not a prototype — a continuously-running production system on always-on Linux hardware.
 
-### 🤖 How I Build
-I believe the future of engineering is AI-augmented. My repositories reflect a "ship-first" mentality where AI agents handle the repetitive boilerplate, allowing me to focus on high-level system architecture, security, and real-world impact.
+**[Stewardship Layer](https://github.com/mfrethy-oneandall/stewardship-layer)** — a governance framework for human-in-the-loop automation: `Propose → Explain → Confirm → Execute → Learn`. Built because I needed it, used in production inside Samuel. Relevant to anyone shipping AI agents or automation that acts on real systems.
 
-**The Result**: High-quality codebases with documented intent, shipped at a pace that matches the speed of the mission.
+**[ha-config](https://github.com/mfrethy-oneandall/ha-config-public)** — a real-world Home Assistant configuration managed as code. Modular package architecture, multi-signal presence detection, consistent lighting standards, and full Samuel integration.
 
-### 🎯 The Goal
-Practical, outcome-driven tech. I don't build for "vibes"—I build systems that ship fast, stay stable, and serve people.
+---
 
-### 📬 Connect with me
-- **Role**: IT Admin @ ONE&ALL Church
-- **Focus**: Full-stack Automation & Systems Integration
+### How I work
+
+AI tools handle implementation details. I focus on architecture, governance, and stability. Systems ship fast — that's the constraint. They also stay up, stay correct, and serve the people using them.
+
+---
+
+### Tech
+
+| Area | Tools |
+|------|-------|
+| AI / Agent | Model Context Protocol (MCP), governed automation, multi-agent orchestration |
+| Smart Home | Home Assistant, ESPHome, IoT, custom hardware |
+| Church Ops | Rock RMS, API integrations, operations platforms |
+| Infrastructure | FortiGate, NanoMDM/Apple MDM, network automation |
+
+---
+
+### Find me
+
+- **Work**: ONE&ALL Church — IT Admin
+- **Location**: San Dimas, CA
