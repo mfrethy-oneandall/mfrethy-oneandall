@@ -10,6 +10,8 @@ IT Admin at ONE&ALL Church (San Dimas, CA) — and building personal AI infrastr
 
 **[Stewardship Layer](https://github.com/mfrethy-oneandall/stewardship-layer)** — a governance framework for human-in-the-loop automation: `Propose → Explain → Confirm → Execute → Learn`. Built because I needed it, used in production inside Samuel. Relevant to anyone shipping AI agents or automation that acts on real systems.
 
+**[samuel-context-public](https://github.com/mfrethy-oneandall/samuel-context-public)** — architecture patterns and agent context for building Samuel-like personal AI systems. Written for agents and developers. Start with `CLAUDE.md`.
+
 **[ha-config](https://github.com/mfrethy-oneandall/ha-config-public)** — a real-world Home Assistant configuration managed as code. Modular package architecture, multi-signal presence detection, consistent lighting standards, and full Samuel integration.
 
 ---
